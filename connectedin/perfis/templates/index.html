@@ -9,7 +9,7 @@
         <ul>
             {% for perfil in perfis %}
                 <li>
-                    <a href="{% url 'exibir' perfil.id%}">{{ perfil.nome }}</a>
+                    <a href="{% url 'exibir' perfil.id %}">{{ perfil.nome }}</a>
                     / {{ perfil.email }}
                 </li>
             {% endfor %}
