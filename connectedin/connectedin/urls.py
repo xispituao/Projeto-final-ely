@@ -29,7 +29,7 @@ urlpatterns = [
     path('/<int:contato_id>', views.desfazer_amizade, name='desfazer_amizade'),
     path('registrar/', RegistrarUsuarioView.as_view(), name='registrar'),
     path('login/', v.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', v.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', v.LogoutView.as_view(template_name='login.html'), name='logout'),
 
 ]
 
