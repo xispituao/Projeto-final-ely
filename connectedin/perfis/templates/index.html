@@ -31,8 +31,8 @@
                     {% for convite in perfil_logado.convites_recebidos.all %}
                         <li class="list-group-item">
                             {{convite.solicitante.nome}}
-                            <a href="{% url 'aceitar' convite.id %}" class="pull-right">aceitar</a>
-                            <a href="{% url 'recusar' convite.id %}" class="pull-right">recusar</a>
+                            <a href="{% url 'recusar' convite.id %}" class="btn pull-right">recusar</a>
+                            <a href="{% url 'aceitar' convite.id %}" class="btn pull-right">aceitar</a>
                         </li>
                     {% endfor %}
                 </ul>
