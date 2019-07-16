@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
-from perfis.models import Perfil, Convite
+from perfis.models import Perfil, Convite, Post
 from django.contrib.auth.decorators import login_required
+from perfis.form_post import PostForm
+from django.views.generic.base import View
 
 
 @login_required
 def index(request):
+    form = PostForm()
     return render(request, 'index.html',
                   {'perfis': Perfil.objects.all(),
-                   'perfil_logado': get_perfil_logado(request)})
+                   'perfil_logado': get_perfil_logado(request),
+                   'form': form})
 
 
 @login_required
@@ -56,3 +60,29 @@ def desfazer_amizade(request, contato_id):
 @login_required
 def get_perfil_logado(request):
     return request.user.perfil
+
+
+class PostView(View):
+    def post(self, request):
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            dados_form = form.cleaned_data
+            post = Post()
+            post.perfil = get_perfil_logado(request)
+            post.postagem = dados_form['postagem']
+            post.save()
+            return redirect('index')
+
+        return redirect('index')
+
+
+def add_postaaaaa(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            postagem = form['postagem'].value()
+            perfil = get_perfil_logado(request)
+            perfil.publicar(postagem)
+
+    return redirect('index')

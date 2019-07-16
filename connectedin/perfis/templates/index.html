@@ -3,6 +3,7 @@
 <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
+            <a href="{% url 'exibir' perfil_logado.id %}">{{ perfil.nome }}</a>
             <strong>Todos os Perfis</strong>
         </div>
         {% if perfis %}
@@ -64,6 +65,23 @@
                 </div>
             {% endif %}
         {% endwith %}
+    </div>
+    <div class="panel panel-default">
+            <form action="{% url 'add_post' %}" method="post">
+                {% csrf_token %}
+                <h2 >Faça uma postagem</h2>
+                <label for="postagem">Digite aqui: </label>
+                <input id="postagem" type="text" name="postagem">
+                <hr />
+                <button type="submit" value="Postar">Postar</button>
+            </form>
+    </div>
+    <div>
+        {% for post in perfil_logado.perfil_postagem.all %}
+
+            {{post.perfil.nome}} // {{ post.postagem }} // {{post.data_postagem}}
+
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

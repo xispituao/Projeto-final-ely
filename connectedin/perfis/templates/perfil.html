@@ -12,13 +12,8 @@
         {% if ja_eh_contato %}
             <div class="well well-sm">Vocês estão conectados!</div>
         {% else %}
-            {% if perfil == perfil_logado %}
-                <a href="#"
-                    class="btn btn-success" role="button">alterar senha</a>
-            {% else %}
-                <a href="{% url 'convidar' perfil.id %}"
-                    class="btn btn-success" role="button">convidar</a>
-            {% endif %}
+            <a href="{% url 'convidar' perfil.id %}"
+                class="btn btn-success" role="button">convidar</a>
         {% endif %}
     </div>
 </div>
