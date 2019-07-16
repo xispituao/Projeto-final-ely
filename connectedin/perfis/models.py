@@ -9,7 +9,7 @@ class Perfil(models.Model):
     contatos = models.ManyToManyField('self')
 
     usuario_id = models.OneToOneField(User, related_name='perfil',
-                                   on_delete=models.CASCADE)
+                                      on_delete=models.CASCADE)
 
     @property
     def email(self):
